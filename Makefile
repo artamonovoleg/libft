@@ -1,11 +1,11 @@
-NAME=libft.a
+NAME = libft.a
 
 CC = clang
 
-CFLAGS=  -g3 -Wall -Wextra -Werror
+CFLAGS = -g3 -Wall -Wextra -Werror
 
 INCLUDES = -I$(HEADERS_DIRECTORY)
-HEADERS_LIST =libft.h
+HEADERS_LIST = libft.h
 
 DIRECTORY =  $(shell pwd)
 HEADERS_DIRECTORY = includes/
@@ -13,7 +13,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = sources/
 
-SOURCES_LIST = standart/ft_itoa.c standart/ft_printf.c standart/ft_strlen.c 
+SOURCES_LIST = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c
 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
@@ -42,6 +42,7 @@ CURRENT_FILES = $(shell find $(DIRECTORY)/objects/ -type f 2> /dev/null | wc -l 
 .PHONY: all clean fclean re
 
 all: $(NAME)
+	clang main.c libft.a -I.
 
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
